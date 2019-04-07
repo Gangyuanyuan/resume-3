@@ -225,16 +225,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.3.0/Tween.min.js"></script>
     <script>
       setTimeout(function(){
-        siteWelcome.classList.remove('active')    // 去除loading动画
-      },1000)     // 延时1秒执行
+        siteWelcome.classList.remove('active')  // 去除loading动画
+      },800)    // 延时800毫秒执行
+        
+      // 添加 offset 类
+      let specialTags = document.querySelectorAll('[data-x]')
+      for(let i=0; i<specialTags.length; i++){
+        specialTags[i].classList.add('offset')
+      }
 
-      window.onscroll = function(x){     // 页面滚动事件
+      setTimeout(function(){
+        yyy()
+      },800)   // 由于loading动画有800毫秒延迟，此处需延迟才能看到效果
+      window.onscroll = function(x){   // 页面滚动事件
         if(window.scrollY > 0){
           topNavBar.classList.add('sticky')
         }else{
           topNavBar.classList.remove('sticky')
         }
+        yyy()
+      }
 
+      function yyy(){
         let specialTags = document.querySelectorAll('[data-x]')
         let minIndex = 0
         for(let i=1; i<specialTags.length; i++){
@@ -242,21 +254,18 @@
             minIndex = i
           } 
         }
-        for(let i=0; i<specialTags.length; i++){
-          specialTags[i].classList.remove('active')   // 移除所有的active
-        }
-        specialTags[minIndex].classList.add('active')  // 给需要加的加上active
+        // minIndex 就是离窗口最近的元素
+        specialTags[minIndex].classList.remove('offset')
         let id = specialTags[minIndex].id
         let a = document.querySelector('a[href="#'+ id +'"]')
         // id == 'siteAbout'    'a[heref="#siteAbout"]'
         let li = a.parentNode
         let brothersAndMe = li.parentNode.children
-        for(i=0; i<brothersAndMe.length; i++){
-          brothersAndMe[i].classList.remove('active')
+        for(let i=0; i<brothersAndMe.length; i++){
+          brothersAndMe[i].classList.remove('highlight')
         }
-        li.classList.add('active')
+        li.classList.add('highlight')
       }
-     
 
       let liTags = document.querySelectorAll('nav.menu > ul > li') // 选择器所匹配的所有li标签
       for(let i=0; i<liTags.length; i++){

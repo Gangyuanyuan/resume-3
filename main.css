@@ -5,8 +5,20 @@ hr{ height: 0; border: none; border-top: 1px solid #DEDEDE; }
 ul, ol{ list-style: none; }
 h1,h2,h3,h4,h5,h6{ font-weight: normal; }
 .clearfix::after{ content: ''; display: block; clear: both; }
-[data-x].active{
-	outline: 10px solid red;
+[data-x].offset{
+	transform: translateY(100px);
+}
+[data-x]{
+	transform: translateY(0);
+	transition:all 0.5s;
+}
+@keyframes slideUp{
+	0%{
+		transform: translateY(-30px);
+	}
+	100%{
+		transform: translateY(0);
+	}
 }
 .topNavBar{
 	padding: 20px 0 20px 0;
@@ -46,7 +58,8 @@ h1,h2,h3,h4,h5,h6{ font-weight: normal; }
 	display: block;
 	position: relative;
 }
-.topNavBar nav > ul > li.active > a::after{
+.topNavBar nav > ul > li.active > a::after,
+.topNavBar nav > ul > li.highlight > a::after{
 	content: '';
 	display: block;
 	position: absolute; left: 0; top: 100%;  /* 不要写bottom: 0; 出现位置不同*/
