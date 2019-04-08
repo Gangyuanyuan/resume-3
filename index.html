@@ -222,6 +222,7 @@
         </div>
       </div>
     </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.3.0/Tween.min.js"></script>
     <script>
       setTimeout(function(){
@@ -235,18 +236,18 @@
       }
 
       setTimeout(function(){
-        yyy()
+        findClosest()
       },800)   // 由于loading动画有800毫秒延迟，此处需延迟才能看到效果
-      window.onscroll = function(x){   // 页面滚动事件
+      window.onscroll = function(x){     // 页面滚动事件
         if(window.scrollY > 0){
           topNavBar.classList.add('sticky')
         }else{
           topNavBar.classList.remove('sticky')
         }
-        yyy()
+        findClosest()
       }
 
-      function yyy(){
+      function findClosest(){   // 找离窗口最近的标签
         let specialTags = document.querySelectorAll('[data-x]')
         let minIndex = 0
         for(let i=1; i<specialTags.length; i++){
